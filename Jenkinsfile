@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Git checkout') {
             steps {
-                git 'git@github.com:mujaheed00/Trading-UI.git'
+                git 'https://github.com/mujaheed00/Trading-UI.git'
             }
         }
 
