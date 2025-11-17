@@ -10,13 +10,12 @@ pipeline {
 
         stage('Install npm prerequisites') {
             steps {
-                // Allow npm audit fix to fail without failing the pipeline
-                sh 'npm audit fix || true'
+                // Skip npm audit completely for CI speed and stability
+                sh 'npm install --no-audit'
 
-                sh 'npm install'
                 sh 'npm run build'
 
-                // Correct way to run commands in a directory
+                // Navigate to the build folder properly in Jenkins
                 dir('build') {
                     sh 'pm2 --name Trading-UI start npm -- start'
                 }
